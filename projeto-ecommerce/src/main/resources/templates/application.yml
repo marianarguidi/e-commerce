@@ -10,4 +10,3 @@ spring:
     url: jdbc:postgresql://localhost:5432/proj_ecommerce
     username: postgres
     password: 141187
-    driverClassName: org.postgresql.Driver
