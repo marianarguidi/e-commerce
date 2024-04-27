@@ -1,5 +1,6 @@
 package br.com.senac.projetoecommerce.entitys;
 
+import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosClienteResponseDom;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -66,11 +67,12 @@ public class Clientes {
         this.telefone = telefone;
     }
 
-    public List<Enderecos> getEnderecos() {
-        return enderecos;
-    }
-
     public void setEnderecos(List<Enderecos> enderecos) {
         this.enderecos = enderecos;
     }
-}
+
+    public List<EnderecosClienteResponseDom> getEnderecos() {
+        this.enderecos = enderecos;
+        return null;
+    }
+    }
