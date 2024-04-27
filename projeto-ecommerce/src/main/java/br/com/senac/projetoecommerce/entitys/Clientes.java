@@ -2,6 +2,8 @@ package br.com.senac.projetoecommerce.entitys;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity (name = "clientes")
 public class Clientes {
 
@@ -20,6 +22,9 @@ public class Clientes {
 
     @Column (nullable = false)
     private String telefone;
+
+    @OneToMany(mappedBy = "clientes")
+    List<Enderecos> enderecos;
 
     public Long getId() {
         return id;
@@ -61,13 +66,11 @@ public class Clientes {
         this.telefone = telefone;
     }
 
-//
-//    public List<Enderecos> getEnderecos() {
-//        return enderecos;
-//    }
-//
-//    public void setEnderecos(List<Enderecos> enderecos) {
-//        this.enderecos = enderecos;
-//    }
+    public List<Enderecos> getEnderecos() {
+        return enderecos;
+    }
 
+    public void setEnderecos(List<Enderecos> enderecos) {
+        this.enderecos = enderecos;
+    }
 }
