@@ -19,7 +19,10 @@ public class Carrinho {
     private Clientes clientes;
 
     @Column(nullable = false)
-    private String valorTotal;
+    private Double valorTotal;
+
+    @Column(nullable = false)
+    private int quantidadeProdutos;
 
     public Long getId() {
         return id;
@@ -45,11 +48,19 @@ public class Carrinho {
         this.clientes = clientes;
     }
 
-    public String getValorTotal() {
+    public Double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(String valorTotal) {
+    public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public int getQuantidadeProdutos() {
+        return quantidadeProdutos;
+    }
+
+    public void setQuantidadeProdutos(int quantidadeProdutos) {
+        this.quantidadeProdutos = quantidadeProdutos;
     }
 }

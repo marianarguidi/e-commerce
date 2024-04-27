@@ -74,6 +74,31 @@ public class EnderecosService {
         return enderecosResponseDom;
     }
 
+    //atualizar endereco
+    public EnderecosResponseDom atualizarEndereco(Long id, EnderecosRequestDom endereco) {
+        Optional<Enderecos> resultado = enderecosRepository.findById(id).map(record -> {
+            record.setRua(endereco.getRua());
+            record.setBairro(endereco.getBairro());
+            record.setCidade(endereco.getCidade());
+            record.setEstado(endereco.getEstado());
+
+            return enderecosRepository.save(record);
+        });
+        if (resultado.isPresent()) {
+            Enderecos enderecosEntidade = resultado.get();
+
+            EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom();
+            enderecosResponseDom.setId(enderecosEntidade.getId());
+            enderecosResponseDom.setRua(enderecosEntidade.getRua());
+            enderecosResponseDom.setCidade(enderecosEntidade.getCidade());
+            enderecosResponseDom.setEstado(enderecosEntidade.getEstado());
+            enderecosResponseDom.setClienteId(enderecosEntidade.getClientes().getId());
+
+            return enderecosResponseDom;
+        }
+        return null;
+    }
+
     //excluir endereço
     public void excluirEndereco(Long id) {
         enderecosRepository.deleteById(id);

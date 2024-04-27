@@ -1,42 +1,13 @@
-package br.com.senac.projetoecommerce.entitys;
+package br.com.senac.projetoecommerce.useCases.Produtos.domains;
 
 import br.com.senac.projetoecommerce.useCases.Produtos.Categorias;
-import jakarta.persistence.*;
 
-@Entity (name = "produtos")
-public class Produtos {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
+public class ProdutosRequestDom {
     private String descricao;
-
-    @Column(nullable = false)
     private Double valor;
-
-    @Column(nullable = false)
     private int quantidade;
-
-    @Column(nullable = false)
     private String detalhes;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Categorias categoria;
-
-    @ManyToOne
-    @JoinColumn(name = "carrinho_id", nullable = false)
-    private Carrinho carrinho;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDescricao() {
         return descricao;
@@ -68,14 +39,6 @@ public class Produtos {
 
     public void setDetalhes(String detalhes) {
         this.detalhes = detalhes;
-    }
-
-    public Carrinho getCarrinho() {
-        return carrinho;
-    }
-
-    public void setCarrinho(Carrinho carrinho) {
-        this.carrinho = carrinho;
     }
 
     public Categorias getCategoria() {

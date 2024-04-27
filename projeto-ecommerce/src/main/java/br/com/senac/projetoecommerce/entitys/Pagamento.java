@@ -15,5 +15,5 @@ public class Pagamento {
     private FormaDePagamento formaDePagamento;
 
     @Column(nullable = false)
-    private String valorTotal;
+    private Double valorTotal;
 }
