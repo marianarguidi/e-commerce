@@ -11,4 +11,6 @@ import java.util.List;
 public interface ProdutoRepository extends JpaRepository<Produtos, Long> {
 
     List<Produtos> findByProdutoCategoria(Categorias categorias);
+
+    List<Produtos> findByCarrinhoId(Long carrinhoId);
 }

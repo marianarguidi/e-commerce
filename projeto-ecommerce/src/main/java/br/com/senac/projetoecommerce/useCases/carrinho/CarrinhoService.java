@@ -1,4 +1,4 @@
-package br.com.senac.projetoecommerce.useCases.Produtos;
+package br.com.senac.projetoecommerce.useCases.carrinho;
 
 import br.com.senac.projetoecommerce.entitys.Carrinho;
 import br.com.senac.projetoecommerce.entitys.Enderecos;
@@ -8,50 +8,53 @@ import br.com.senac.projetoecommerce.useCases.Produtos.implement.ProdutoReposito
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosResponseDom;
 import br.com.senac.projetoecommerce.useCases.enderecos.implement.EnderecosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class ProdutoService {
-
+public class CarrinhoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    //carregar os produtos de apenas uma categoria
-    public List<ProdutosResponseDom> carregarProdutosCategoria(Categorias categorias) {
-        List<Produtos> resultado = produtoRepository.findByProdutoCategoria(categorias);
+    //carregar os produtos do carrinho
+    public List<ProdutosResponseDom> carregarProdutosCarrinho(Long carrinho_id) {
+        List<Produtos> resultado = produtoRepository.findByCarrinhoId(carrinho_id);
         List<ProdutosResponseDom> produtosResponseDomList = new ArrayList<>();
 
         for (Produtos dado : resultado) {
             ProdutosResponseDom produtosResponseDom = new ProdutosResponseDom();
             produtosResponseDom.setId(dado.getId());
-            produtosResponseDom.setValor(dado.getValor());
             produtosResponseDom.setDescricao(dado.getDescricao());
             produtosResponseDom.setDetalhes(dado.getDetalhes());
+            produtosResponseDom.setValor(dado.getValor());
             produtosResponseDom.setQuantidade(dado.getQuantidade());
+            produtosResponseDom.setCategoria(dado.getCategoria());
 
             produtosResponseDomList.add(produtosResponseDom);
         }
         return produtosResponseDomList;
     }
 
-    //atualiza estoque do produto e adiciona ao carrinho
-    public void atualizarProduto(Produtos produto, Carrinho carrinho) {
-        if ((carrinho.getQuantidadeProdutos() < 5) && (produto.getQuantidade() > 0)) {
-            produto.setQuantidade(produto.getQuantidade() - 1);
-            carrinho.setProdutos(carrinho.getProdutos());
-            carrinho.setQuantidadeProdutos(carrinho.getQuantidadeProdutos() + 1);
-            produtoRepository.save(produto);
+    //adiciona um produto ao carrinho
+    public void adicionarProdutoCarrinho(Produtos produto, Carrinho carrinho) {
+        boolean produtoJaNoCarrinho = carrinho.getProdutos().contains(produto);
+        if (produtoJaNoCarrinho) {
+            for (Produtos p : carrinho.getProdutos()) {
+                if (p.equals(produto)) {
+                    p.setQuantidade(p.getQuantidade() + 1);
+                    break;
+                }
+            }
         } else {
-            throw new RuntimeException("Que pena! Este produto está indisponível no momento.");
+            produto.setQuantidade(1);
+            carrinho.getProdutos().add(produto);
         }
     }
 
-
-    public Produtos obterProdutoPorId(Long produtoId) {
-        return produtoRepository.findById(produtoId)
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado com o ID: " + produtoId));
-    }
+    //remove um produto do carrinho
+        public void removerProdutoCarrinho(Produtos produto, Carrinho carrinho) {
+            if (carrinho.getProdutos().contains(produto)) {
+                carrinho.getProdutos().remove(produto);
+            }
+        }
 }
