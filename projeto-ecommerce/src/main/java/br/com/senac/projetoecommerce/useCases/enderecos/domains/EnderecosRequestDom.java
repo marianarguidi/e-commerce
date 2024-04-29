@@ -1,5 +1,7 @@
 package br.com.senac.projetoecommerce.useCases.enderecos.domains;
 
+import br.com.senac.projetoecommerce.entitys.Clientes;
+
 public class EnderecosRequestDom {
 
     private String rua;
@@ -8,7 +10,7 @@ public class EnderecosRequestDom {
     private String cidade;
     private String estado;
 
-    private Long clienteId;
+    private Clientes clienteId;
 
     public String getRua() {
         return rua;
@@ -50,11 +52,11 @@ public class EnderecosRequestDom {
         this.estado = estado;
     }
 
-    public Long getClienteId() {
+    public Clientes getClienteId() {
         return clienteId;
     }
 
-    public void setClienteId(Long clienteId) {
+    public void setClienteId(Clientes clienteId) {
         this.clienteId = clienteId;
     }
 }

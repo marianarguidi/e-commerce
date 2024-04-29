@@ -11,7 +11,8 @@ public class Carrinho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "produtos")
+    @OneToMany
+    @JoinColumn(name = "produtos_id", nullable = false)
     List<Produtos> produtos;
 
     @OneToOne
