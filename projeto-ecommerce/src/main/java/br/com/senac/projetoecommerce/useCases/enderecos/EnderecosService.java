@@ -24,7 +24,7 @@ public class EnderecosService {
 
     //carregar os enderecos de apenas um cliente
     public List<EnderecosResponseDom> carregarEnderecosCliente(Long idCliente) {
-        List<Enderecos> resultado = enderecosRepository.findByClientesId(idCliente);
+        List<Enderecos> resultado = enderecosRepository.findByClienteId(idCliente);
         List<EnderecosResponseDom> enderecosResponseDomList = new ArrayList<>();
 
         for (Enderecos dado : resultado) {
@@ -49,7 +49,7 @@ public class EnderecosService {
         }
 
         Enderecos enderecosEntidade = new Enderecos();
-        enderecosEntidade.getClientes();
+        enderecosEntidade.getCliente();
         enderecosEntidade.setRua(endereco.getRua());
         enderecosEntidade.setComplemento(endereco.getComplemento());
         enderecosEntidade.setBairro(endereco.getBairro());
@@ -58,12 +58,12 @@ public class EnderecosService {
 
         Optional<Clientes> clienteEncontrado = clientesRepository.findById(endereco.getClienteId());
         Clientes clientes = clienteEncontrado.get();
-        enderecosEntidade.setClientes(clientes);
+        enderecosEntidade.setCliente(clientes);
 
         Enderecos resultadoEnderecos = enderecosRepository.save(enderecosEntidade);
 
         EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom(); //retorno no postman
-        enderecosResponseDom.setClienteId(resultadoEnderecos.getClientes().getId());
+        enderecosResponseDom.setClienteId(resultadoEnderecos.getCliente().getId());
         enderecosResponseDom.setId(resultadoEnderecos.getId());
         enderecosResponseDom.setRua(resultadoEnderecos.getRua());
         enderecosResponseDom.setComplemento(resultadoEnderecos.getComplemento());
@@ -92,7 +92,7 @@ public class EnderecosService {
             enderecosResponseDom.setRua(enderecosEntidade.getRua());
             enderecosResponseDom.setCidade(enderecosEntidade.getCidade());
             enderecosResponseDom.setEstado(enderecosEntidade.getEstado());
-            enderecosResponseDom.setClienteId(enderecosEntidade.getClientes().getId());
+            enderecosResponseDom.setClienteId(enderecosEntidade.getCliente().getId());
 
             return enderecosResponseDom;
         }

@@ -10,8 +10,8 @@ public class Enderecos {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "clientes_id", nullable = false)
-    private Clientes clientes;
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Clientes cliente;
 
     @Column(nullable = false)
     private String rua;
@@ -34,14 +34,6 @@ public class Enderecos {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Clientes getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
     }
 
     public String getRua() {
@@ -82,5 +74,13 @@ public class Enderecos {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes clientes) {
+        this.cliente = clientes;
     }
 }

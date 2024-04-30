@@ -1,11 +1,14 @@
 package br.com.senac.projetoecommerce.useCases.clientes.domains;
 
+import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosRequestDom;
+
 public class ClienteRequestDom {
 
     private String nome;
     private String sobrenome;
     private String email;
     private String telefone;
+    private EnderecosRequestDom enderecos;
 
     public String getNome() {
         return nome;
@@ -37,5 +40,13 @@ public class ClienteRequestDom {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public EnderecosRequestDom getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(EnderecosRequestDom enderecos) {
+        this.enderecos = enderecos;
     }
 }

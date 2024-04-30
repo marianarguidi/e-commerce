@@ -1,8 +1,8 @@
 package br.com.senac.projetoecommerce.entitys;
 
-import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosClienteResponseDom;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity (name = "clientes")
@@ -24,8 +24,12 @@ public class Clientes {
     @Column (nullable = false)
     private String telefone;
 
-    @OneToMany(mappedBy = "clientes")
-    List<Enderecos> enderecos;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Enderecos> enderecos;
+
+    public Clientes() {
+        this.enderecos = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -67,12 +71,11 @@ public class Clientes {
         this.telefone = telefone;
     }
 
+    public List<Enderecos> getEnderecos() {
+        return enderecos;
+    }
+
     public void setEnderecos(List<Enderecos> enderecos) {
         this.enderecos = enderecos;
     }
-
-    public List<EnderecosClienteResponseDom> getEnderecos() {
-        this.enderecos = enderecos;
-        return null;
-    }
-    }
+}

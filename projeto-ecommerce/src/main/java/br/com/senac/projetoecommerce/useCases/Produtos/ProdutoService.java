@@ -21,7 +21,7 @@ public class ProdutoService {
 
     //carregar os produtos de apenas uma categoria
     public List<ProdutosResponseDom> carregarProdutosCategoria(Categorias categorias) {
-        List<Produtos> resultado = produtoRepository.findByProdutoCategoria(categorias);
+        List<Produtos> resultado = produtoRepository.findByCategoria(categorias);
         List<ProdutosResponseDom> produtosResponseDomList = new ArrayList<>();
 
         for (Produtos dado : resultado) {
