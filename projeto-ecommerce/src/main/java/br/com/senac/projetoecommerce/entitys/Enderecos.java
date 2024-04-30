@@ -36,14 +36,6 @@ public class Enderecos {
         this.id = id;
     }
 
-    public Clientes getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
-    }
-
     public String getRua() {
         return rua;
     }
@@ -84,8 +76,11 @@ public class Enderecos {
         this.estado = estado;
     }
 
-    public void setClienteId(Long id) {
-            this.cliente = new Clientes();
-            this.cliente.setId(id);
-        }
+    public Clientes getCliente() {
+        return cliente;
     }
+
+    public void setCliente(Clientes clientes) {
+        this.cliente = clientes;
+    }
+}

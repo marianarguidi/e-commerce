@@ -11,7 +11,7 @@ public class ValidacoesEndereco {
         List<String> mensagens = new ArrayList<>();
 
         EnderecosRepository enderecosRepository = null;
-        if (enderecosRepository.findByClientesId(endereco.getClienteId()).size()>4){
+        if (enderecosRepository.findByClienteId(endereco.getClienteId()).size()>4){
             mensagens.add("Limite de endereços por clientes excedido");
         }
 

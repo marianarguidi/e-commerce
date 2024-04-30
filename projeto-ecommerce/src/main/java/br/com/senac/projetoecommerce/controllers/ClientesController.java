@@ -3,6 +3,7 @@ package br.com.senac.projetoecommerce.controllers;
 import br.com.senac.projetoecommerce.useCases.clientes.ClientesService;
 import br.com.senac.projetoecommerce.useCases.clientes.domains.ClienteRequestDom;
 import br.com.senac.projetoecommerce.useCases.clientes.domains.ClienteResponseDom;
+import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosRequestDom;
 import br.com.senac.projetoecommerce.utils.ResponseUtil;
 import br.com.senac.projetoecommerce.utils.SenacExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,9 @@ public class ClientesController {
     }
 
     //atualizar cliente existente
+    @Autowired
+    private ClientesService clienteService;
+
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<ClienteResponseDom> atualizarCliente(@PathVariable Long id, @RequestBody ClienteRequestDom cliente){
         try {
