@@ -66,7 +66,6 @@ public class ClientesService {
         return responseDom;
     }
 
-
     //excluir cliente
     public void excluirCliente(Long id) {
         clientesRepository.deleteById(id);
@@ -105,7 +104,7 @@ public class ClientesService {
         return null;
     }
 
-    //Lógica para atualizar cadastro do cliente, junto com endereço
+    //Lógica para atualizar cadastro do cliente
     public ClienteResponseDom atualizarCliente(Long id, ClienteRequestDom cliente) {
 
         Optional<Clientes> resultado = clientesRepository.findById(id).map(record -> {

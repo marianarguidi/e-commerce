@@ -21,13 +21,13 @@ import java.util.List;
 
         //carregar todos os enderecos de um cliente
         @GetMapping("/carregarEnderecoByCliente/{id}")
-        public ResponseEntity<List<EnderecosResponseDom>> carregarEnderecosCliente(@RequestParam Long id_Cliente){
+        public ResponseEntity<List<EnderecosResponseDom>> carregarEnderecosCliente(@PathVariable Long id) {
             try {
-                List<EnderecosResponseDom> responseDoms = enderecosService.carregarEnderecosCliente(id_Cliente);
+                List<EnderecosResponseDom> responseDoms = (List<EnderecosResponseDom>) enderecosService.carregarEnderecoById(id);
 
                 int status = 200;
-                if (responseDoms.isEmpty()){
-                    status=204;
+                if (responseDoms.isEmpty()) {
+                    status = 204;
                 }
                 return ResponseEntity.status(status).body(responseDoms);
             } catch (Exception e) {
@@ -35,7 +35,8 @@ import java.util.List;
             }
         }
 
-        //criar endereco para um cliente
+
+    //criar endereco para um cliente
     @PostMapping("/criarEndereco")
     public ResponseEntity<?> criarEndereco(@RequestBody EnderecosRequestDom endereco) throws SenacExceptions{
         try {
