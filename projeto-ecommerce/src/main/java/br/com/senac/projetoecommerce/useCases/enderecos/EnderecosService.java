@@ -23,23 +23,24 @@ public class EnderecosService {
     private ClientesRepository clientesRepository;
 
     //carregar os enderecos de apenas um cliente
-    public List<EnderecosResponseDom> carregarEnderecosCliente(Long idCliente) {
-        List<Enderecos> resultado = enderecosRepository.findByClienteId(idCliente);
-        List<EnderecosResponseDom> enderecosResponseDomList = new ArrayList<>();
+    public EnderecosResponseDom carregarEnderecoById(Long id) {
+        Optional<Enderecos> resultado = enderecosRepository.findById(id);
+        if (resultado.isPresent()) {
+            Enderecos enderecos = resultado.get();
+            EnderecosResponseDom response = new EnderecosResponseDom();
+            response.setClienteId(enderecos.getId());
+            response.setId(enderecos.getId());
+            response.setRua(enderecos.getRua());
+            response.setBairro(enderecos.getBairro());
+            response.setCidade(enderecos.getCidade());
+            response.setEstado(enderecos.getEstado());
 
-        for (Enderecos dado : resultado) {
-            EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom();
-            enderecosResponseDom.setId(dado.getId());
-            enderecosResponseDom.setRua(dado.getRua());
-            enderecosResponseDom.setComplemento(dado.getComplemento());
-            enderecosResponseDom.setBairro(dado.getBairro());
-            enderecosResponseDom.setCidade(dado.getCidade());
-            enderecosResponseDom.setEstado(dado.getEstado());
 
-            enderecosResponseDomList.add(enderecosResponseDom);
+            return response;
         }
-        return enderecosResponseDomList;
+        return null;
     }
+
 
     //criar novos endereços
     public EnderecosResponseDom criarEnderecos(EnderecosRequestDom endereco) throws SenacExceptions {
@@ -49,30 +50,36 @@ public class EnderecosService {
         }
 
         Enderecos enderecosEntidade = new Enderecos();
-        enderecosEntidade.getCliente();
         enderecosEntidade.setRua(endereco.getRua());
         enderecosEntidade.setComplemento(endereco.getComplemento());
         enderecosEntidade.setBairro(endereco.getBairro());
         enderecosEntidade.setCidade(endereco.getCidade());
         enderecosEntidade.setEstado(endereco.getEstado());
 
-        Optional<Clientes> clienteEncontrado = clientesRepository.findById(endereco.getClienteId());
-        Clientes clientes = clienteEncontrado.get();
+        // Verifica se o ID do cliente é válido
+        Long clienteId = endereco.getClienteId();
+        Optional<Clientes> clienteEncontrado = clientesRepository.findById(clienteId);
+        Clientes clientes = clienteEncontrado.orElseThrow(() -> new SenacExceptions("Cliente não encontrado"));
+
+        // Define o cliente associado ao endereço
         enderecosEntidade.setCliente(clientes);
 
+        // Salva o endereço no banco de dados
         Enderecos resultadoEnderecos = enderecosRepository.save(enderecosEntidade);
 
-        EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom(); //retorno no postman
-        enderecosResponseDom.setClienteId(resultadoEnderecos.getCliente().getId());
+        // Cria o objeto de resposta
+        EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom();
         enderecosResponseDom.setId(resultadoEnderecos.getId());
         enderecosResponseDom.setRua(resultadoEnderecos.getRua());
         enderecosResponseDom.setComplemento(resultadoEnderecos.getComplemento());
         enderecosResponseDom.setBairro(resultadoEnderecos.getBairro());
         enderecosResponseDom.setCidade(resultadoEnderecos.getCidade());
         enderecosResponseDom.setEstado(resultadoEnderecos.getEstado());
+        enderecosResponseDom.setClienteId(clienteId);
 
         return enderecosResponseDom;
     }
+
 
     //atualizar endereco
     public EnderecosResponseDom atualizarEndereco(Long id, EnderecosRequestDom endereco) {
