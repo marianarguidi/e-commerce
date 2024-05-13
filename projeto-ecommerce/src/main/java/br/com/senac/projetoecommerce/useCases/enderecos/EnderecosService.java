@@ -6,7 +6,7 @@ import br.com.senac.projetoecommerce.useCases.clientes.implement.ClientesReposit
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosRequestDom;
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosResponseDom;
 import br.com.senac.projetoecommerce.useCases.enderecos.implement.EnderecosRepository;
-import br.com.senac.projetoecommerce.useCases.enderecos.implement.ValidacoesEndereco;
+import br.com.senac.projetoecommerce.useCases.enderecos.ValidacoesEndereco;
 import br.com.senac.projetoecommerce.utils.SenacExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,59 +23,50 @@ public class EnderecosService {
     private ClientesRepository clientesRepository;
 
     //carregar os enderecos de apenas um cliente
-    public EnderecosResponseDom carregarEnderecoById(Long id) {
-        Optional<Enderecos> resultado = enderecosRepository.findById(id);
-        if (resultado.isPresent()) {
-            Enderecos enderecos = resultado.get();
-            EnderecosResponseDom response = new EnderecosResponseDom();
-            response.setClienteId(enderecos.getId());
-            response.setId(enderecos.getId());
-            response.setRua(enderecos.getRua());
-            response.setBairro(enderecos.getBairro());
-            response.setCidade(enderecos.getCidade());
-            response.setEstado(enderecos.getEstado());
+    public List<EnderecosResponseDom> carregarEnderecosCliente(Long idCliente) {
+        List<Enderecos> resultado = enderecosRepository.findByClienteId(idCliente);
+        List<EnderecosResponseDom> enderecosResponseDomList = new ArrayList<>();
 
+        for (Enderecos dado : resultado) {
+            EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom();
+            enderecosResponseDom.setId(dado.getId());
+            enderecosResponseDom.setRua(dado.getRua());
+            enderecosResponseDom.setBairro(dado.getBairro());
+            enderecosResponseDom.setCidade(dado.getCidade());
+            enderecosResponseDom.setEstado(dado.getEstado());
 
-            return response;
+            enderecosResponseDomList.add(enderecosResponseDom);
         }
-        return null;
+        return enderecosResponseDomList;
     }
 
-
-    //criar novos endereços
+    //criar
     public EnderecosResponseDom criarEnderecos(EnderecosRequestDom endereco) throws SenacExceptions {
-        List<String> mensagens = ValidacoesEndereco.validarEndereco(endereco);
+        List<String> mensagens = ValidacoesEndereco.validarEndereco(endereco, enderecosRepository);
         if (!mensagens.isEmpty()){
             throw new SenacExceptions(mensagens);
         }
 
         Enderecos enderecosEntidade = new Enderecos();
+        enderecosEntidade.getCliente();
         enderecosEntidade.setRua(endereco.getRua());
-        enderecosEntidade.setComplemento(endereco.getComplemento());
         enderecosEntidade.setBairro(endereco.getBairro());
         enderecosEntidade.setCidade(endereco.getCidade());
         enderecosEntidade.setEstado(endereco.getEstado());
 
-        // Verifica se o ID do cliente é válido
-        Long clienteId = endereco.getClienteId();
-        Optional<Clientes> clienteEncontrado = clientesRepository.findById(clienteId);
-        Clientes clientes = clienteEncontrado.orElseThrow(() -> new SenacExceptions("Cliente não encontrado"));
-
-        // Define o cliente associado ao endereço
+        Optional<Clientes> clienteEncontrado = clientesRepository.findById(endereco.getClienteId()); //carrega o cliente para ser possível cadastrar um endereço pois cada clientes terá varios endereços
+        Clientes clientes = clienteEncontrado.get();
         enderecosEntidade.setCliente(clientes);
 
-        // Salva o endereço no banco de dados
         Enderecos resultadoEnderecos = enderecosRepository.save(enderecosEntidade);
 
-        // Cria o objeto de resposta
-        EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom();
+        EnderecosResponseDom enderecosResponseDom = new EnderecosResponseDom(); //retorno no postman
+        enderecosResponseDom.setClienteId(resultadoEnderecos.getCliente().getId());
         enderecosResponseDom.setId(resultadoEnderecos.getId());
         enderecosResponseDom.setRua(resultadoEnderecos.getRua());
-        enderecosResponseDom.setComplemento(resultadoEnderecos.getComplemento());
         enderecosResponseDom.setBairro(resultadoEnderecos.getBairro());
         enderecosResponseDom.setCidade(resultadoEnderecos.getCidade());
         enderecosResponseDom.setEstado(resultadoEnderecos.getEstado());
-        enderecosResponseDom.setClienteId(clienteId);
 
         return enderecosResponseDom;
     }
