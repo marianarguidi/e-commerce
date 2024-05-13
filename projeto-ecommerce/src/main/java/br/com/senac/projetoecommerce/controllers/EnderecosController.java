@@ -3,6 +3,7 @@ package br.com.senac.projetoecommerce.controllers;
 import br.com.senac.projetoecommerce.useCases.enderecos.EnderecosService;
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosRequestDom;
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosResponseDom;
+import br.com.senac.projetoecommerce.useCases.enderecos.implement.EnderecosRepository;
 import br.com.senac.projetoecommerce.utils.ResponseUtil;
 import br.com.senac.projetoecommerce.utils.SenacExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,14 @@ import java.util.List;
     public class EnderecosController {
         @Autowired
         private EnderecosService enderecosService;
+        @Autowired
+        private EnderecosRepository enderecosRepository;
 
         //carregar todos os enderecos de um cliente
         @GetMapping("/carregarEnderecoByCliente/{id}")
         public ResponseEntity<List<EnderecosResponseDom>> carregarEnderecosCliente(@PathVariable Long id) {
             try {
-                List<EnderecosResponseDom> responseDoms = (List<EnderecosResponseDom>) enderecosService.carregarEnderecoById(id);
+                List<EnderecosResponseDom> responseDoms = (List<EnderecosResponseDom>) enderecosService.carregarEnderecosCliente(id);
 
                 int status = 200;
                 if (responseDoms.isEmpty()) {
