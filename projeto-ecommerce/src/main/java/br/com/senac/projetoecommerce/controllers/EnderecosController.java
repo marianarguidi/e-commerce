@@ -22,7 +22,7 @@ import java.util.List;
         @Autowired
         private EnderecosRepository enderecosRepository;
 
-        //carregar todos os enderecos de um cliente
+    //carregar todos os enderecos de um cliente
         @GetMapping("/carregarEnderecoByCliente/{id}")
         public ResponseEntity<List<EnderecosResponseDom>> carregarEnderecosCliente(@PathVariable Long id) {
             try {
@@ -37,7 +37,6 @@ import java.util.List;
                 return ResponseEntity.badRequest().body(null);
             }
         }
-
 
     //criar endereco para um cliente
     @PostMapping("/criarEndereco")

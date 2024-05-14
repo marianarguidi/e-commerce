@@ -34,6 +34,7 @@ public class EnderecosService {
             enderecosResponseDom.setBairro(dado.getBairro());
             enderecosResponseDom.setCidade(dado.getCidade());
             enderecosResponseDom.setEstado(dado.getEstado());
+            enderecosResponseDom.setComplemento(dado.getComplemento());
 
             enderecosResponseDomList.add(enderecosResponseDom);
         }
@@ -79,6 +80,7 @@ public class EnderecosService {
             record.setBairro(endereco.getBairro());
             record.setCidade(endereco.getCidade());
             record.setEstado(endereco.getEstado());
+            record.setComplemento(endereco.getComplemento());
 
             return enderecosRepository.save(record);
         });

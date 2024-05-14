@@ -7,7 +7,6 @@ public class EnderecosRequestDom {
     private String complemento;
     private String cidade;
     private String estado;
-
     private Long clienteId;
 
     public String getRua() {
