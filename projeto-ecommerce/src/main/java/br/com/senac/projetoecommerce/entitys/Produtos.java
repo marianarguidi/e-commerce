@@ -27,7 +27,7 @@ public class Produtos {
     private Categorias categoria;
 
     @ManyToOne
-    @JoinColumn(name = "carrinho_id", nullable = false)
+    @JoinColumn(name = "carrinho_id")
     private Carrinho carrinho;
 
     public Long getId() {

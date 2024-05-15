@@ -12,7 +12,7 @@ public class Carrinho {
     private Long id;
 
     @OneToMany
-    @JoinColumn(name = "produtos_id", nullable = false)
+    @JoinColumn(name = "produtos_id")
     List<Produtos> produtos;
 
     @OneToOne
