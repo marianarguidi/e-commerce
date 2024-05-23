@@ -16,7 +16,7 @@ public class LoginController {
         @PostMapping("/login")
         public String login(@RequestBody Usuario usuario) {
             if (authenticationService.autenticar(usuario)) {
-                return "Login bem-sucedido!"; // ou redirecionar para outra página
+                return "Login bem-sucedido!";
             } else {
                 return "Credenciais inválidas. Tente novamente ou cadastre-se.";
             }
