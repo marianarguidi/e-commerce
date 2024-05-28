@@ -11,12 +11,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-
     @Autowired
     private ProdutoService produtoService;
 
     @GetMapping("/categoria/{categoria}")
     public List<Produtos> listarProdutosPorCategoria(@PathVariable Categorias categoria) {
         return produtoService.listarProdutosPorCategoria(categoria);
+    }
+
+    @GetMapping("/{id}")
+    public Produtos buscarProdutoPorId(@PathVariable Long id) {
+        return produtoService.buscarProdutoPorId(id);
     }
 }
