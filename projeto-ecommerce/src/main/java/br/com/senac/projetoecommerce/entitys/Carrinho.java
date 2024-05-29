@@ -1,8 +1,8 @@
 package br.com.senac.projetoecommerce.entitys;
 
 import jakarta.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Carrinho {
@@ -15,10 +15,9 @@ public class Carrinho {
 
     @ElementCollection
     @CollectionTable(name = "carrinho_produtos", joinColumns = @JoinColumn(name = "carrinho_id"))
-    @MapKeyJoinColumn(name = "produto_id")
-    @Column(name = "quantidade")
-    private Map<Produtos, Integer> produtos = new HashMap<>();
+    private Set<CarrinhoProduto> produtos = new HashSet<>();
 
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -43,11 +42,11 @@ public class Carrinho {
         this.quantidadeProdutos = quantidadeProdutos;
     }
 
-    public Map<Produtos, Integer> getProdutos() {
+    public Set<CarrinhoProduto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(Map<Produtos, Integer> produtos) {
+    public void setProdutos(Set<CarrinhoProduto> produtos) {
         this.produtos = produtos;
     }
 
