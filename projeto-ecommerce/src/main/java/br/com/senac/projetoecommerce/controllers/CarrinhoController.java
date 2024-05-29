@@ -11,13 +11,13 @@ public class CarrinhoController {
     @Autowired
     private CarrinhoService carrinhoService;
 
-    @PostMapping("/{carrinhoId}/adicionar/{produtoId}/{quantidade}")
-    public Carrinho adicionarProdutoAoCarrinho(@PathVariable Long carrinhoId, @PathVariable Long produtoId, @PathVariable int quantidade) {
-        return carrinhoService.adicionarProdutoAoCarrinho(carrinhoId, produtoId, quantidade);
+    @PostMapping("/adicionar/{produtoId}/{quantidade}")
+    public Carrinho adicionarProdutoAoCarrinho(@RequestParam(required = false) Long carrinhoId, @RequestParam Long clienteId, @PathVariable Long produtoId, @PathVariable Integer quantidade) {
+        return carrinhoService.adicionarProdutoAoCarrinho(carrinhoId, produtoId, quantidade, clienteId);
     }
 
     @PostMapping("/{carrinhoId}/remover/{produtoId}/{quantidade}")
-    public Carrinho removerProdutoDoCarrinho(@PathVariable Long carrinhoId, @PathVariable Long produtoId, @PathVariable int quantidade) {
+    public Carrinho removerProdutoDoCarrinho(@PathVariable Long carrinhoId, @PathVariable Long produtoId, @PathVariable Integer quantidade) {
         return carrinhoService.removerProdutoDoCarrinho(carrinhoId, produtoId, quantidade);
     }
 

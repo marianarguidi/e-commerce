@@ -1,7 +1,5 @@
 package br.com.senac.projetoecommerce.useCases.produtos;
-
 import br.com.senac.projetoecommerce.entitys.Produtos;
-import br.com.senac.projetoecommerce.utils.Categorias;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
