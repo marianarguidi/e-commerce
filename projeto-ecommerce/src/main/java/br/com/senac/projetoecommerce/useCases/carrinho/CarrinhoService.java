@@ -65,6 +65,7 @@ public class CarrinhoService {
             carrinho.getProdutos().add(carrinhoProduto);
         }
 
+        // Decrementa a quantidade do produto no estoque
         produto.setQuantidade(produto.getQuantidade() - quantidade);
         carrinho.setQuantidadeProdutos(carrinho.getQuantidadeProdutos() + quantidade);
         carrinho.setValorTotal(carrinho.getValorTotal() + produto.getValor() * quantidade);
