@@ -13,10 +13,9 @@ public class Produtos {
     private String descricao;
     private double valor = 0.0;
     private int quantidade;
-
-    @ElementCollection(targetClass = Categorias.class)
+    
     @Enumerated(EnumType.STRING)
-    private List<Categorias> categorias;
+    private Categorias categoria;
 
     private String detalhes;
 
@@ -44,13 +43,6 @@ public class Produtos {
         this.valor = valor;
     }
 
-    public List<Categorias> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categorias> categorias) {
-        this.categorias = categorias;
-    }
 
     public int getQuantidade() {
         return quantidade;
@@ -66,5 +58,13 @@ public class Produtos {
 
     public void setDetalhes(String detalhes) {
         this.detalhes = detalhes;
+    }
+
+    public Categorias getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categorias categoria) {
+        this.categoria = categoria;
     }
 }
