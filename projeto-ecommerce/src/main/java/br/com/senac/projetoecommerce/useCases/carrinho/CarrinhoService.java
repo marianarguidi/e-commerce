@@ -68,7 +68,7 @@ public class CarrinhoService {
         // Decrementa a quantidade do produto no estoque
         produto.setQuantidade(produto.getQuantidade() - quantidade);
         carrinho.setQuantidadeProdutos(carrinho.getQuantidadeProdutos() + quantidade);
-        carrinho.setValorTotal(carrinho.getValorTotal() + produto.getValor() * quantidade);
+        carrinho.setValorTotal(carrinho.getValorTotal() + produto.getPreco() * quantidade);
 
         produtoRepository.save(produto);
         Carrinho savedCarrinho = carrinhoRepository.save(carrinho);
@@ -98,7 +98,7 @@ public class CarrinhoService {
 
         produto.setQuantidade(produto.getQuantidade() + quantidade);
         carrinho.setQuantidadeProdutos(carrinho.getQuantidadeProdutos() - quantidade);
-        carrinho.setValorTotal(carrinho.getValorTotal() - produto.getValor() * quantidade);
+        carrinho.setValorTotal(carrinho.getValorTotal() - produto.getPreco() * quantidade);
 
         produtoRepository.save(produto);
         return carrinhoRepository.save(carrinho);

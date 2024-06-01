@@ -1,5 +1,6 @@
 package br.com.senac.projetoecommerce.entitys;
 
+import br.com.senac.projetoecommerce.useCases.produtos.ProdutosPrecos;
 import br.com.senac.projetoecommerce.utils.Categorias;
 import jakarta.persistence.*;
 
@@ -10,12 +11,22 @@ public class Produtos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nome;
     private String descricao;
-    private double valor = 0.0;
+    private Double preco = 9.90;
     private int quantidade;
+
+    //private String imagemPequena;
+
+
+    //private String imagemGrande;
+    //private String codigoProduto;
     
     @Enumerated(EnumType.STRING)
     private Categorias categoria;
+
+    @OneToMany(mappedBy = "produto")
+    private List<ProdutosPrecos> precos;
 
     private String detalhes;
 
@@ -35,12 +46,12 @@ public class Produtos {
         this.descricao = descricao;
     }
 
-    public double getValor() {
-        return valor;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setPreco(double valor) {
+        this.preco = preco;
     }
 
 
@@ -67,4 +78,56 @@ public class Produtos {
     public void setCategoria(Categorias categoria) {
         this.categoria = categoria;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public List<ProdutosPrecos> getPrecos() {
+        return precos;
+    }
+
+    public void setPrecos(List<ProdutosPrecos> precos) {
+        this.precos = precos;
+    }
+
+    /* public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getImagemPequena() {
+        return imagemPequena;
+    }
+
+    public void setImagemPequena(String imagemPequena) {
+        this.imagemPequena = imagemPequena;
+    }*/
+
+    /*public String getImagemGrande() {
+        return imagemGrande;
+    }
+
+    public void setImagemGrande(String imagemGrande) {
+        this.imagemGrande = imagemGrande;
+    }
+
+    public String getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }*/
 }
