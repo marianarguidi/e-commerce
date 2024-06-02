@@ -16,7 +16,7 @@ public class Produtos {
     private Double preco = 9.90;
     private int quantidade;
 
-    //private String imagemPequena;
+    private String imagemPequena;
 
 
     //private String imagemGrande;
@@ -87,9 +87,9 @@ public class Produtos {
         this.nome = nome;
     }
 
-    public void setPreco(Double preco) {
+    /*public void setPreco(Double preco) {
         this.preco = preco;
-    }
+    }*/
 
     public List<ProdutosPrecos> getPrecos() {
         return precos;
@@ -106,14 +106,14 @@ public class Produtos {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+*/
     public String getImagemPequena() {
         return imagemPequena;
     }
 
     public void setImagemPequena(String imagemPequena) {
         this.imagemPequena = imagemPequena;
-    }*/
+    }
 
     /*public String getImagemGrande() {
         return imagemGrande;
