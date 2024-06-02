@@ -18,6 +18,15 @@ public class ProdutoService {
         return produtoRepository.findByCategoria(String.valueOf(categoria));
     }
 
+    public List<ProdutosResponseDom> carregarProdutosByCategoria(Categorias categoria) {
+        List<Produtos> result = produtoRepository.findByCategoria(categoria);
+        if(!result.isEmpty()) {
+            return result.stream().map(ProdutosMappers::produtosParaProdutosResponseDom).toList();
+        }
+
+        return null;
+    }
+
     public Produtos buscarProdutoPorId(Long id) {
         return produtoRepository.findById(id).orElse(null);
     }

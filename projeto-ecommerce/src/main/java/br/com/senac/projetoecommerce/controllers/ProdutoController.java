@@ -17,8 +17,19 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @GetMapping("/categoria/{categoria}")
-    public List<Produtos> listarProdutosPorCategoria(@PathVariable Categorias categoria) {
-        return produtoService.listarProdutosPorCategoria(categoria);
+    public ResponseEntity<?> carregarProdutosByCategoria(@PathVariable Categorias categoria) {
+        try {
+            List<ProdutosResponseDom> out = produtoService.carregarProdutosByCategoria(categoria);
+
+            if (out != null) {
+                return ResponseEntity.ok(out);
+            }
+
+            return ResponseEntity.noContent().build();
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Erro não mapeado: " + e.getMessage());
+        }
     }
 
     //@GetMapping("/{id}")
