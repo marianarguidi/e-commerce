@@ -19,7 +19,7 @@ public class Produtos {
     private String imagemPequena;
 
 
-    //private String imagemGrande;
+    private String imagemGrande;
     //private String codigoProduto;
     
     @Enumerated(EnumType.STRING)
@@ -115,7 +115,7 @@ public class Produtos {
         this.imagemPequena = imagemPequena;
     }
 
-    /*public String getImagemGrande() {
+    public String getImagemGrande() {
         return imagemGrande;
     }
 
@@ -123,7 +123,7 @@ public class Produtos {
         this.imagemGrande = imagemGrande;
     }
 
-    public String getCodigoProduto() {
+    /*public String getCodigoProduto() {
         return codigoProduto;
     }
 

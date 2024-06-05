@@ -8,7 +8,7 @@ public class ProdutosRequestDom {
     private String descricao;
     private Double preco;
     private String imagemPequena;
-    //private String imagemGrande;
+    private String imagemGrande;
     private LocalDateTime createdAt;
 
    /* public String getNome() {
@@ -42,14 +42,14 @@ public class ProdutosRequestDom {
     public void setImagemPequena(String imagemPequena) {
         this.imagemPequena = imagemPequena;
     }
-/*
+
     public String getImagemGrande() {
         return imagemGrande;
     }
 
     public void setImagemGrande(String imagemGrande) {
         this.imagemGrande = imagemGrande;
-    }*/
+    }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

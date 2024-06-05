@@ -9,7 +9,7 @@ public class ProdutosMappers {
         out.setDescricao(in.getDescricao());
         //out.setNome(in.getNome());
         out.setImagemPequena(in.getImagemPequena());
-        //out.setImagemGrande(in.getImagemGrande());
+        out.setImagemGrande(in.getImagemGrande());
         //out.setCreatedAt(in.getCreatedAt());
         out.setPreco(!in.getPrecos().isEmpty() ? in.getPrecos().get(0).getPreco() : 0.0);
         //out.setPreco(in.getPreco());
