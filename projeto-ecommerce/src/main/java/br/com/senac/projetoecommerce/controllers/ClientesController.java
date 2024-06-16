@@ -1,5 +1,6 @@
 package br.com.senac.projetoecommerce.controllers;
 
+import br.com.senac.projetoecommerce.useCases.clientes.AutenticacaoRequest;
 import br.com.senac.projetoecommerce.useCases.clientes.ClientesService;
 import br.com.senac.projetoecommerce.useCases.clientes.domains.ClienteRequestDom;
 import br.com.senac.projetoecommerce.useCases.clientes.domains.ClienteResponseDom;
@@ -11,11 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @CrossOrigin
 @Controller
-@RequestMapping("/cadastroCliente")
+@RequestMapping("/clientes")
 public class ClientesController {
     @Autowired
     private ClientesService clientesService;
@@ -37,6 +39,33 @@ public class ClientesController {
         }
     }
 
+    @PostMapping("/")
+    public ResponseEntity<?> criarCliente(@RequestBody ClienteRequestDom cliente){
+        try {
+            ClienteResponseDom response = clientesService.criarClientes(cliente);
+            return ResponseEntity.status(201).body(response);
+        } catch (SenacExceptions e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(ResponseUtil.responseMap(e.getMessages()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(ResponseUtil.responseMap("Erro não Mapeado " + e.getMessage()));
+        }
+    }
+
+    @PostMapping("/autenticar/")
+    public ResponseEntity<?> autenticarCliente( @RequestBody AutenticacaoRequest cliente){
+        try {
+            ClienteResponseDom response = clientesService.autenticarCliente(cliente.getEmail(), cliente.getSenha());
+            return ResponseEntity.ok(response);
+        } catch (SenacExceptions e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(ResponseUtil.responseMap(e.getMessages()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ResponseUtil.responseMap("Erro não Mapeado " + e.getMessage()));
+        }
+    }
+
     //carregar apenas o cliente selecionado
     @GetMapping("/carregar/{id}")
     public ResponseEntity<ClienteResponseDom> carregarClienteById(@PathVariable Long id){
@@ -53,7 +82,7 @@ public class ClientesController {
     }
 
     //criar novo cliente
-    @PostMapping("/cadastrar")
+    /*@PostMapping("/cadastrar")
     public ResponseEntity<?> criarCliente(@RequestBody ClienteRequestDom cliente){
 
         try {
@@ -61,12 +90,12 @@ public class ClientesController {
             return ResponseEntity.status(201).body(responseDom);
         }catch (SenacExceptions es){
             es.printStackTrace();
-            return ResponseEntity.badRequest().body(ResponseUtil.responseMap(es.getMessagens()));
+            return ResponseEntity.badRequest().body(ResponseUtil.responseMap(es.getMessages()));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.internalServerError().body(ResponseUtil.responseMap("Erro não mapeado: " + e.getMessage()));
         }
-    }
+    }*/
 
     //atualizar cliente existente
     @Autowired

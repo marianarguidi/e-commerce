@@ -10,6 +10,7 @@ import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosCliente
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosRequestDom;
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosResponseDom;
 import br.com.senac.projetoecommerce.utils.SenacExceptions;
+import br.com.senac.projetoecommerce.utils.SenhaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,8 @@ public class ClientesService {
         clienteEntidade.setSobrenome(cliente.getSobrenome());
         clienteEntidade.setEmail(cliente.getEmail());
         clienteEntidade.setTelefone(cliente.getTelefone());
+        clienteEntidade.setCpf(cliente.getCpf());
+        clienteEntidade.setSenha(cliente.getSenha());
 
         Clientes resultado = clientesRepository.save(clienteEntidade);
 
@@ -62,6 +65,8 @@ public class ClientesService {
         responseDom.setNome(resultado.getNome());
         responseDom.setEmail(resultado.getEmail());
         responseDom.setTelefone(resultado.getTelefone());
+        responseDom.setCpf(resultado.getCpf());
+        responseDom.setSenha(resultado.getSenha());
 
         return responseDom;
     }
@@ -128,5 +133,18 @@ public class ClientesService {
         }
 
         return null;
+    }
+
+    public ClienteResponseDom autenticarCliente(String email, String senha) throws SenacExceptions {
+        Optional<Clientes> clienteResult = clientesRepository.findByEmail(email);
+        if(clienteResult.isPresent()){
+            if(SenhaUtil.validarSenha(senha, clienteResult.get().getSenha())){
+                return ClientesMappers.clientesToClientesResponseDom(clienteResult.get());
+            }
+
+            throw new SenacExceptions("Senha invalida!");
+        }
+
+        throw new SenacExceptions("Cliente não encontrado!");
     }
 }

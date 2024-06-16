@@ -12,6 +12,8 @@ public class ClienteResponseDom {
     private String sobrenome;
     private String email;
     private String telefone;
+    private String cpf;
+    private String senha;
 
     private List<EnderecosClienteResponseDom> enderecos;
 
@@ -21,6 +23,22 @@ public class ClienteResponseDom {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {

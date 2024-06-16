@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
         public boolean autenticar(Usuario usuario) {
-            return "admin".equals(usuario.getUsername()) && "123456".equals(usuario.getPassword());
+            return usuario.equals(usuario.getId()) && "admin".equals(usuario.getUsername()) && "123456".equals(usuario.getPassword());
         }
 
 }

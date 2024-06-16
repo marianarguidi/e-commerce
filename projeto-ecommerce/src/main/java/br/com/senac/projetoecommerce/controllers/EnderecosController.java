@@ -46,7 +46,7 @@ import java.util.List;
             return ResponseEntity.status(201).body(enderecosResponseDom);
         }catch (SenacExceptions es){
             es.printStackTrace();
-            return ResponseEntity.badRequest().body(ResponseUtil.responseMap(es.getMessagens()));
+            return ResponseEntity.badRequest().body(ResponseUtil.responseMap(es.getMessages()));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.internalServerError().body(ResponseUtil.responseMap("Erro não mapeado: " + e.getMessage()));
