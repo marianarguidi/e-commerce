@@ -23,7 +23,14 @@ public class Clientes {
 
     @Column (nullable = false)
     private String telefone;
+    @Column (nullable = false)
+    private String cpf;
 
+   /* @Column(nullable = false)
+    private ClientesSexoEnum sexo;*/
+
+    @Column
+    private String senha;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Enderecos> enderecos;
 
@@ -77,5 +84,21 @@ public class Clientes {
 
     public void setEnderecos(List<Enderecos> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
