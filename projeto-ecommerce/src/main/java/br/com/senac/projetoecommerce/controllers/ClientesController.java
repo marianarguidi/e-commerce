@@ -57,6 +57,13 @@ public class ClientesController {
     public ResponseEntity<?> autenticarCliente( @RequestBody AutenticacaoRequest cliente){
         try {
             ClienteResponseDom response = clientesService.autenticarCliente(cliente.getEmail(), cliente.getSenha());
+
+            response.getId(); // Supondo que getId() retorna o ID do cliente
+            response.getEnderecos();
+            response.getCpf();
+
+            // Retorna o ID junto com a resposta
+            //return ResponseEntity.ok().body(idCliente);
             return ResponseEntity.ok(response);
         } catch (SenacExceptions e){
             e.printStackTrace();
