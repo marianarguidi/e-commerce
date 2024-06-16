@@ -5,6 +5,8 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 public class AutenticacaoRequest {
 
+    //private Long id;
+
     /*@NotNull(message = "O campo 'email' é obrigatorio")*/
     private String email;
 
@@ -26,4 +28,12 @@ public class AutenticacaoRequest {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+  /*  public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }*/
 }

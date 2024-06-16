@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 
 public class ClienteRequestDom {
 
+    private Long id;
     /*@NotNull(message = "O campo 'nome' não pode ser nulo")*/
     private String nome;
     /*@NotNull(message = "O campo 'sobrenome' não pode ser nulo")*/
@@ -28,6 +29,14 @@ public class ClienteRequestDom {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getSobrenome() {

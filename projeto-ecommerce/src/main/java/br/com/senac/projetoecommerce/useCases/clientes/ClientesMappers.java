@@ -8,6 +8,7 @@ import br.com.senac.projetoecommerce.utils.SenacExceptions;
 public class ClientesMappers {
     public static Clientes clientesRequestDomToClientes(ClienteRequestDom in){
         Clientes out = new Clientes();
+        out.setId(in.getId());
         out.setNome(in.getNome());
         out.setSobrenome(in.getSobrenome());
         out.setEmail(in.getEmail());
@@ -29,12 +30,16 @@ public class ClientesMappers {
 
     public static ClienteResponseDom clientesToClientesResponseDom(Clientes in){
         ClienteResponseDom out = new ClienteResponseDom();
+        out.setId(in.getId());
         out.setNome(in.getNome());
         out.setSobrenome(in.getSobrenome());
         out.setEmail(in.getEmail());
+  /*      out.setTelefone(in.getTelefone());
+        out.setCpf(in.getCpf());*/
+
        /* out.setDataNascimento(in.getDataNascimento());
         out.setSexo(in.getSexo());*/
-        out.setId(in.getId());
+
 
         return out;
     }
