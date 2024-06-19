@@ -63,6 +63,7 @@ public class ClientesController {
             response.getCpf();
 
             // Retorna o ID junto com a resposta
+
             //return ResponseEntity.ok().body(idCliente);
             return ResponseEntity.ok(response);
         } catch (SenacExceptions e){
