@@ -11,7 +11,7 @@ import java.util.Optional;
 public class PedidoFinalizadoService {
 
     @Autowired
-    private br.com.senac.projetoecommerce.repositories.PedidoFinalizadoRepository pedidoFinalizadoRepository;
+    private PedidoFinalizadoRepository pedidoFinalizadoRepository;
 
     public List<PedidoFinalizado> listarTodos() {
         return pedidoFinalizadoRepository.findAll();
