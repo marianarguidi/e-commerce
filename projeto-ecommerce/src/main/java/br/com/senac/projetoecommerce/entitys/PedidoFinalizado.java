@@ -30,6 +30,6 @@ public class PedidoFinalizado {
     private Carrinho carrinho;
 
 
-
-
+    public void setId(Long id) {
+    }
 }
