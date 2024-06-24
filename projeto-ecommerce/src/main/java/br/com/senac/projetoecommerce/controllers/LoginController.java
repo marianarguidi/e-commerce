@@ -13,7 +13,7 @@ public class LoginController {
         @Autowired
         private LoginService authenticationService;
 
-        @PostMapping("/login")
+        @PostMapping("/")
         public String login(@RequestBody Usuario usuario) {
             if (authenticationService.autenticar(usuario)) {
                 return "Login bem-sucedido!";
