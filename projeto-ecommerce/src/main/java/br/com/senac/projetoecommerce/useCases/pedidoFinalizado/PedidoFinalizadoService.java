@@ -24,24 +24,4 @@ public class PedidoFinalizadoService {
     public PedidoFinalizado criar(PedidoFinalizado pedido) {
         return pedidoFinalizadoRepository.save(pedido);
     }
-
-    public PedidoFinalizado atualizar(Long id, PedidoFinalizado pedidoAtualizado) {
-        Optional<PedidoFinalizado> pedidoExistente = pedidoFinalizadoRepository.findById(id);
-        if (pedidoExistente.isPresent()) {
-            pedidoAtualizado.setId(id); // Certifica que o ID é o mesmo
-            return pedidoFinalizadoRepository.save(pedidoAtualizado);
-        } else {
-            throw new RuntimeException("Pedido não encontrado");
-        }
-    }
-
-    public boolean deletar(Long id) {
-        Optional<PedidoFinalizado> pedido = pedidoFinalizadoRepository.findById(id);
-        if (pedido.isPresent()) {
-            pedidoFinalizadoRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
