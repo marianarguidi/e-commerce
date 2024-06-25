@@ -15,20 +15,14 @@ public class Produtos {
     private String descricao;
     private Double preco = 9.90;
     private int quantidade;
-
     private String imagemPequena;
-
-
     private String imagemGrande;
-    //private String codigoProduto;
-    
+
     @Enumerated(EnumType.STRING)
     private Categorias categoria;
 
     @OneToMany(mappedBy = "produto")
     private List<ProdutosPrecos> precos;
-
-    private String detalhes;
 
     public Long getId() {
         return id;
@@ -54,21 +48,12 @@ public class Produtos {
         this.preco = preco;
     }
 
-
     public int getQuantidade() {
         return quantidade;
     }
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public String getDetalhes() {
-        return detalhes;
-    }
-
-    public void setDetalhes(String detalhes) {
-        this.detalhes = detalhes;
     }
 
     public Categorias getCategoria() {
@@ -87,10 +72,6 @@ public class Produtos {
         this.nome = nome;
     }
 
-    /*public void setPreco(Double preco) {
-        this.preco = preco;
-    }*/
-
     public List<ProdutosPrecos> getPrecos() {
         return precos;
     }
@@ -99,14 +80,6 @@ public class Produtos {
         this.precos = precos;
     }
 
-    /* public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-*/
     public String getImagemPequena() {
         return imagemPequena;
     }
@@ -123,11 +96,4 @@ public class Produtos {
         this.imagemGrande = imagemGrande;
     }
 
-    /*public String getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
-    }*/
 }

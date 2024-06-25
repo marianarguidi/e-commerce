@@ -3,7 +3,7 @@ package br.com.senac.projetoecommerce.useCases.produtos;
 import java.time.LocalDateTime;
 
 public class ProdutosRequestDom {
-    //private String nome;
+    private String nome;
     //private String codigoProduto;
     private String descricao;
     private Double preco;
@@ -11,21 +11,13 @@ public class ProdutosRequestDom {
     private String imagemGrande;
     private LocalDateTime createdAt;
 
-   /* public String getNome() {
+   public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
-    }*/
 
     public String getDescricao() {
         return descricao;
