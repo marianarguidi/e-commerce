@@ -7,7 +7,7 @@ public class ProdutosMappers {
         out.setId(in.getId());
         //out.setCodigoProduto(in.getCodigoProduto());
         out.setDescricao(in.getDescricao());
-        //out.setNome(in.getNome());
+        out.setNome(in.getNome());
         out.setImagemPequena(in.getImagemPequena());
         out.setImagemGrande(in.getImagemGrande());
         //out.setCreatedAt(in.getCreatedAt());

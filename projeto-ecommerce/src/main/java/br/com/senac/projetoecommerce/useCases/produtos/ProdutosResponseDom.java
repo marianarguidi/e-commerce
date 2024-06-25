@@ -8,7 +8,6 @@ public class ProdutosResponseDom {
     private String descricao;
     private String imagemPequena;
     private String imagemGrande;
-    private LocalDateTime createdAt;
     private Double preco;
 
     public Long getId() {
@@ -50,15 +49,7 @@ public class ProdutosResponseDom {
         this.imagemGrande = imagemGrande;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Double getPreco() {
+   public Double getPreco() {
         return preco;
     }
 
