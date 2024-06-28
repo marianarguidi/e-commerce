@@ -71,6 +71,7 @@ public class PedidoFinalizadoService {
 
         return pedidoFinalizadoResponseDom;
     }
+<<<<<<< HEAD
 
 
     public PedidoFinalizado atualizar(Long id, PedidoFinalizado pedidoAtualizado) {
@@ -92,4 +93,6 @@ public class PedidoFinalizadoService {
             return false;
         }
     }
+=======
+>>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
 }

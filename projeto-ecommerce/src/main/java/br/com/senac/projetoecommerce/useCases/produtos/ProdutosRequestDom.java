@@ -19,6 +19,7 @@ public class ProdutosRequestDom {
         this.nome = nome;
     }
 
+<<<<<<< HEAD
     /*
 
     public String getCodigoProduto() {
@@ -29,6 +30,8 @@ public class ProdutosRequestDom {
         this.codigoProduto = codigoProduto;
     }*/
 
+=======
+>>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
     public String getDescricao() {
         return descricao;
     }

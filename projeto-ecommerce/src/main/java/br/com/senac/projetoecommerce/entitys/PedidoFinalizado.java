@@ -35,6 +35,7 @@ public class PedidoFinalizado {
 
 
     public void setId(Long id) {
+
     }
 
     public Long getId() {
