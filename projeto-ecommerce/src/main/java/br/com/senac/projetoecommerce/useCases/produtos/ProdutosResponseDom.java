@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class ProdutosResponseDom {
     private Long id;
-    //private String nome;
+    private String nome;
     //private String codigoProduto;
     private String descricao;
     private String imagemPequena;
@@ -20,14 +20,14 @@ public class ProdutosResponseDom {
         this.id = id;
     }
 
-    /*public String getNome() {
+    public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+/*
     public String getCodigoProduto() {
         return codigoProduto;
     }

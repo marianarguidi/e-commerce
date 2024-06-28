@@ -1,44 +1,30 @@
-package br.com.senac.projetoecommerce.entitys;
-import br.com.senac.projetoecommerce.utils.*;
-import jakarta.persistence.*;
+package br.com.senac.projetoecommerce.useCases.pedidoFinalizado;
 
-@Entity
-public class PedidoFinalizado {
+import br.com.senac.projetoecommerce.entitys.Carrinho;
+import br.com.senac.projetoecommerce.entitys.Clientes;
+import br.com.senac.projetoecommerce.entitys.Enderecos;
+import br.com.senac.projetoecommerce.utils.FormaPagamento;
+import br.com.senac.projetoecommerce.utils.Status;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PedidoFinalizadoResponseDom {
     private Long id;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Status status;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private FormaPagamento formaPagamento;
-
-    @OneToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
     private Clientes clientes;
-
-    @OneToOne
-    @JoinColumn(name = "endereco_id", nullable = false)
     private Enderecos enderecos;
 
-    /*@OneToOne
-    @JoinColumn(name = "carrinho_id", nullable = false)
-    private Carrinho carrinho;*/
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "carrinho_id")
     private Carrinho carrinho;
-
-
-    public void setId(Long id) {
+    private Long clienteId;
+    public Long getClienteId() {
+        return clienteId;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Status getStatus() {

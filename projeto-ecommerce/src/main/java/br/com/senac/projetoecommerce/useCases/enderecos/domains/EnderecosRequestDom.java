@@ -9,6 +9,7 @@ public class EnderecosRequestDom {
     private String estado;
     private Long clienteId;
 
+
     public String getRua() {
         return rua;
     }

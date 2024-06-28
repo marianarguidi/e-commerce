@@ -5,6 +5,7 @@ import br.com.senac.projetoecommerce.utils.Categorias;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class Produtos {
@@ -21,14 +22,14 @@ public class Produtos {
 
     private String imagemGrande;
     //private String codigoProduto;
-    
+
     @Enumerated(EnumType.STRING)
     private Categorias categoria;
 
     @OneToMany(mappedBy = "produto")
     private List<ProdutosPrecos> precos;
 
-    private String detalhes;
+    //private String detalhes;
 
     public Long getId() {
         return id;
@@ -63,13 +64,13 @@ public class Produtos {
         this.quantidade = quantidade;
     }
 
-    public String getDetalhes() {
+   /* public String getDetalhes() {
         return detalhes;
     }
 
     public void setDetalhes(String detalhes) {
         this.detalhes = detalhes;
-    }
+    }*/
 
     public Categorias getCategoria() {
         return categoria;
@@ -123,6 +124,10 @@ public class Produtos {
         this.imagemGrande = imagemGrande;
     }
 
+    public Optional<Produtos> findById(Long id) {
+        return findById(id);
+    }
+
     /*public String getCodigoProduto() {
         return codigoProduto;
     }
@@ -131,3 +136,6 @@ public class Produtos {
         this.codigoProduto = codigoProduto;
     }*/
 }
+
+
+
