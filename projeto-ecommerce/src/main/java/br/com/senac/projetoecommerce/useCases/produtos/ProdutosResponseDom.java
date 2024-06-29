@@ -5,10 +5,7 @@ import java.time.LocalDateTime;
 public class ProdutosResponseDom {
     private Long id;
     private String nome;
-<<<<<<< HEAD
-    //private String codigoProduto;
-=======
->>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
+
     private String descricao;
     private String imagemPequena;
     private String imagemGrande;
@@ -29,7 +26,7 @@ public class ProdutosResponseDom {
     public void setNome(String nome) {
         this.nome = nome;
     }
-<<<<<<< HEAD
+
 /*
     public String getCodigoProduto() {
         return codigoProduto;
@@ -39,8 +36,7 @@ public class ProdutosResponseDom {
         this.codigoProduto = codigoProduto;
     }*/
 
-=======
->>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
+
     public String getDescricao() {
         return descricao;
     }

@@ -18,10 +18,7 @@ public class Produtos {
     private int quantidade;
     private String imagemPequena;
     private String imagemGrande;
-<<<<<<< HEAD
-    //private String codigoProduto;
-=======
->>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
+
 
     @Enumerated(EnumType.STRING)
     private Categorias categoria;
@@ -29,11 +26,7 @@ public class Produtos {
     @OneToMany(mappedBy = "produto")
     private List<ProdutosPrecos> precos;
 
-<<<<<<< HEAD
-    //private String detalhes;
 
-=======
->>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
     public Long getId() {
         return id;
     }
@@ -66,7 +59,7 @@ public class Produtos {
         this.quantidade = quantidade;
     }
 
-<<<<<<< HEAD
+
    /* public String getDetalhes() {
         return detalhes;
     }
@@ -75,8 +68,7 @@ public class Produtos {
         this.detalhes = detalhes;
     }*/
 
-=======
->>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
+
     public Categorias getCategoria() {
         return categoria;
     }
@@ -117,7 +109,7 @@ public class Produtos {
         this.imagemGrande = imagemGrande;
     }
 
-<<<<<<< HEAD
+
     public Optional<Produtos> findById(Long id) {
         return findById(id);
     }
@@ -129,8 +121,7 @@ public class Produtos {
     public void setCodigoProduto(String codigoProduto) {
         this.codigoProduto = codigoProduto;
     }*/
-=======
->>>>>>> 801d1b13f5c69474b4ca563be05cd89aa263ab66
+
 }
 
 
