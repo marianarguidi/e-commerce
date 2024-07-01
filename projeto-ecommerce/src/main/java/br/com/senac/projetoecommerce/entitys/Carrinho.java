@@ -120,4 +120,5 @@ public class Carrinho {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
+
 }

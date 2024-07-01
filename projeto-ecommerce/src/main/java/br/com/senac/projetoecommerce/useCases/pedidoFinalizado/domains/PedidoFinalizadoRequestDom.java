@@ -1,11 +1,6 @@
-package br.com.senac.projetoecommerce.useCases.pedidoFinalizado;
+package br.com.senac.projetoecommerce.useCases.pedidoFinalizado.domains;
 
-import br.com.senac.projetoecommerce.entitys.Carrinho;
-import br.com.senac.projetoecommerce.entitys.Clientes;
-import br.com.senac.projetoecommerce.entitys.Enderecos;
-import br.com.senac.projetoecommerce.utils.FormaPagamento;
 import br.com.senac.projetoecommerce.utils.Status;
-import jakarta.persistence.*;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package br.com.senac.projetoecommerce.useCases.pedidoFinalizado;
+package br.com.senac.projetoecommerce.useCases.pedidoFinalizado.domains;
 
 import br.com.senac.projetoecommerce.entitys.Carrinho;
 import br.com.senac.projetoecommerce.entitys.Clientes;
