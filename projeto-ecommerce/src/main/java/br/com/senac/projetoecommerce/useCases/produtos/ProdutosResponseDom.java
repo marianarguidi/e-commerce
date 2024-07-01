@@ -11,6 +11,8 @@ public class ProdutosResponseDom {
     private String imagemGrande;
     private Double preco;
 
+    private int quantidade;
+
     public Long getId() {
         return id;
     }
@@ -67,5 +69,13 @@ public class ProdutosResponseDom {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }

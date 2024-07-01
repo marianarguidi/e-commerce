@@ -10,6 +10,7 @@ public class ProdutosRequestDom {
     private String imagemPequena;
     private String imagemGrande;
     private LocalDateTime createdAt;
+    private int quantidade;
 
    public String getNome() {
         return nome;
@@ -69,5 +70,13 @@ public class ProdutosRequestDom {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }
