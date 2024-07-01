@@ -14,15 +14,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pedidos")
+@CrossOrigin
 public class PedidoFinalizadoController {
 
     @Autowired
     private PedidoFinalizadoService pedidoFinalizadoService;
 
-    @PostMapping("/criar/{clienteId}")
-    public ResponseEntity<PedidoFinalizadoResponseDom> criarPedido(@PathVariable Long clienteId, @RequestBody PedidoFinalizadoRequestDom pedido) {
+    @PostMapping("/criar")
+    public ResponseEntity<PedidoFinalizadoResponseDom> criarPedido(@RequestBody PedidoFinalizadoRequestDom pedido) {
         try {
-            PedidoFinalizadoResponseDom novoPedido = pedidoFinalizadoService.criarPedido(clienteId, pedido);
+            PedidoFinalizadoResponseDom novoPedido = pedidoFinalizadoService.criarPedido(0l, pedido);
             return new ResponseEntity<>(novoPedido, HttpStatus.CREATED);
         } catch (SenacExceptions e) {
             // Retorna BAD_REQUEST (400) com a mensagem de erro específica do negócio

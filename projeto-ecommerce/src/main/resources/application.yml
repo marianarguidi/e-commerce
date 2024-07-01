@@ -9,4 +9,4 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/projeto-ecommerce
     username: postgres
-    password: 141187
+    password: maria
