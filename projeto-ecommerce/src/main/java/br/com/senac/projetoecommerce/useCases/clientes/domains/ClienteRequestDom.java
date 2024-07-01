@@ -3,6 +3,8 @@ package br.com.senac.projetoecommerce.useCases.clientes.domains;
 import br.com.senac.projetoecommerce.useCases.enderecos.domains.EnderecosRequestDom;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.util.List;
+
 
 public class ClienteRequestDom {
 
@@ -16,7 +18,7 @@ public class ClienteRequestDom {
     /*@NotNull(message = "O campo 'telefone' não pode ser nulo")*/
     private String telefone;
     /*@NotNull(message = "O campo 'endereco' não pode ser nulo")*/
-    private EnderecosRequestDom enderecos;
+    private List<EnderecosRequestDom> enderecos;
 
     /*@NotNull(message = "O campo 'senha' não pode ser nulo")*/
     private String senha;
@@ -64,11 +66,10 @@ public class ClienteRequestDom {
         this.telefone = telefone;
     }
 
-    public EnderecosRequestDom getEnderecos() {
+    public List<EnderecosRequestDom> getEnderecos() {
         return enderecos;
     }
-
-    public void setEnderecos(EnderecosRequestDom enderecos) {
+    public void setEnderecos(List<EnderecosRequestDom> enderecos) {
         this.enderecos = enderecos;
     }
 

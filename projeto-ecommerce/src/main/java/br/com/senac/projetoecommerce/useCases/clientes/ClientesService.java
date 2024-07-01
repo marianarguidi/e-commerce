@@ -23,6 +23,7 @@ public class ClientesService {
     @Autowired
     private ClientesRepository clientesRepository;
 
+
     //carregar clientes
     public List<ClienteResponseDom> carregarClientes() {
         List<Clientes> resultado = clientesRepository.findAll();
@@ -35,6 +36,7 @@ public class ClientesService {
             aux.setSobrenome(dado.getSobrenome());
             aux.setEmail(dado.getEmail());
             aux.setTelefone(dado.getTelefone());
+            aux.setCpf(dado.getCpf());
 
             out.add(aux);
         }
@@ -87,6 +89,7 @@ public class ClientesService {
             response.setNome(cliente.getNome());
             response.setSobrenome(cliente.getSobrenome());
             response.setEmail(cliente.getEmail());
+            response.setCpf(cliente.getCpf());
            // response.setEnderecos(cliente.getEnderecos());
 
             List<EnderecosClienteResponseDom> listaEnderecos = new ArrayList<>();
@@ -117,6 +120,7 @@ public class ClientesService {
             record.setSobrenome(cliente.getSobrenome());
             record.setEmail(cliente.getEmail());
             record.setTelefone(cliente.getTelefone());
+            record.setCpf(cliente.getCpf());
             return clientesRepository.save(record);
         });
         if (resultado.isPresent()) {
@@ -129,6 +133,7 @@ public class ClientesService {
             responseDom.setSobrenome(clientesEntidade.getSobrenome());
             responseDom.setEmail(clientesEntidade.getEmail());
             responseDom.setTelefone(clientesEntidade.getTelefone());
+            responseDom.setCpf(clientesEntidade.getCpf());
             return responseDom;
         }
 

@@ -34,6 +34,7 @@ public class ClientesMappers {
         out.setNome(in.getNome());
         out.setSobrenome(in.getSobrenome());
         out.setEmail(in.getEmail());
+        out.setCpf(in.getCpf());
   /*      out.setTelefone(in.getTelefone());
         out.setCpf(in.getCpf());*/
 
