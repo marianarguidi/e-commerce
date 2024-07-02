@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cartoes")
@@ -37,6 +39,26 @@ public class CartaoCreditoController {
         // Não inclua o CVV na resposta
 
         return ResponseEntity.ok(responseDom);
+    }
+
+
+    @GetMapping("/carregarPorCliente/{clienteId}")
+    public ResponseEntity<List<CartaoCreditoResponseDom>> carregarCartoesPorCliente(@PathVariable Long clienteId) {
+        List<Cartao> cartoes = cartaoCreditoRepository.findByClienteId(clienteId);
+        if (!cartoes.isEmpty()) {
+            List<CartaoCreditoResponseDom> responseDoms = cartoes.stream().map(cartao -> {
+                CartaoCreditoResponseDom responseDom = new CartaoCreditoResponseDom();
+                responseDom.setId(cartao.getId());
+                responseDom.setNumero(cartao.getNumero());
+                responseDom.setTitular(cartao.getTitular());
+                responseDom.setDataValidade(cartao.getDataValidade());
+                // Não inclua o CVV na resposta
+                return responseDom;
+            }).collect(Collectors.toList());
+            return ResponseEntity.ok(responseDoms);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
