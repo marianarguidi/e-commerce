@@ -17,11 +17,11 @@ public class PedidoFinalizado {
     @Column(nullable = false)
     private FormaPagamento formaPagamento;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private Clientes clientes;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "endereco_id", nullable = false)
     private Enderecos enderecos;
 

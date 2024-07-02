@@ -61,4 +61,6 @@ public class PedidoFinalizadoResponseDom {
     public void setCarrinho(Carrinho carrinho) {
         this.carrinho = carrinho;
     }
+
+    
 }

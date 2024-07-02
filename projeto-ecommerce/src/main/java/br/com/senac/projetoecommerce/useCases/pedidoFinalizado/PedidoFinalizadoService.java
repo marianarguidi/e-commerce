@@ -29,6 +29,7 @@ public class PedidoFinalizadoService {
         // 1. Validação da Forma de Pagamento
         FormaPagamento formaPagamento;
         try {
+            // Converte o valor para maiúsculas para garantir a correspondência com o enum
             formaPagamento = FormaPagamento.valueOf(pedidoRequest.getFormaPagamento().toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new SenacExceptions("Forma de pagamento inválida: " + pedidoRequest.getFormaPagamento());

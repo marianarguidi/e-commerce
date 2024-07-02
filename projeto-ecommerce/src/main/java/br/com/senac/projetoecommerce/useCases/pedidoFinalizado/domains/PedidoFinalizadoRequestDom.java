@@ -1,15 +1,15 @@
 package br.com.senac.projetoecommerce.useCases.pedidoFinalizado.domains;
 
+import br.com.senac.projetoecommerce.utils.FormaPagamento;
 import br.com.senac.projetoecommerce.utils.Status;
 
 import java.util.List;
 
 public class PedidoFinalizadoRequestDom {
     private Status status;
-    private String formaPagamento;
+    private FormaPagamento formaPagamento;
     private Long clienteId;
     private Long enderecoId;
-
     private List<PedidosFinalizadosCarrinhoDom> carrinho;
 
     public Status getStatus() {
@@ -20,11 +20,11 @@ public class PedidoFinalizadoRequestDom {
         this.status = status;
     }
 
-    public String getFormaPagamento() {
+    public FormaPagamento getFormaPagamento() {
         return formaPagamento;
     }
 
-    public void setFormaPagamento(String formaPagamento) {
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
 
@@ -51,4 +51,5 @@ public class PedidoFinalizadoRequestDom {
     public void setCarrinho(List<PedidosFinalizadosCarrinhoDom> carrinho) {
         this.carrinho = carrinho;
     }
+
 }
