@@ -5,21 +5,12 @@ import br.com.senac.projetoecommerce.utils.Status;
 import java.util.List;
 
 public class PedidoFinalizadoRequestDom {
-    private Long id;
     private Status status;
     private String formaPagamento;
     private Long clienteId;
     private Long enderecoId;
 
     private List<PedidosFinalizadosCarrinhoDom> carrinho;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Status getStatus() {
         return status;

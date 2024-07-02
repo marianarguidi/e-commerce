@@ -10,11 +10,10 @@ public class PedidoFinalizadoResponseDom {
     private Long id;
     private Status status;
     private FormaPagamento formaPagamento;
-    private Clientes clientes;
-    private Enderecos enderecos;
-
-    private Carrinho carrinho;
     private Long clienteId;
+    private Long enderecoId;
+    private Carrinho carrinho;
+
     public Long getClienteId() {
         return clienteId;
     }
@@ -43,20 +42,16 @@ public class PedidoFinalizadoResponseDom {
         this.formaPagamento = formaPagamento;
     }
 
-    public Clientes getClientes() {
-        return clientes;
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public void setClientes(Clientes clientes) {
-        this.clientes = clientes;
+    public Long getEnderecoId() {
+        return enderecoId;
     }
 
-    public Enderecos getEnderecos() {
-        return enderecos;
-    }
-
-    public void setEnderecos(Enderecos enderecos) {
-        this.enderecos = enderecos;
+    public void setEnderecoId(Long enderecoId) {
+        this.enderecoId = enderecoId;
     }
 
     public Carrinho getCarrinho() {

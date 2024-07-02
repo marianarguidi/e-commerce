@@ -74,8 +74,8 @@ public class PedidoFinalizadoService {
         // 7. Construção da Resposta
         PedidoFinalizadoResponseDom response = new PedidoFinalizadoResponseDom();
         response.setId(resultadoPedido.getId());
-        response.setClientes(resultadoPedido.getClientes());
-        response.setEnderecos(resultadoPedido.getEnderecos());
+        response.setClienteId(clienteId);
+        response.setEnderecoId(endereco.getId());
         response.setFormaPagamento(FormaPagamento.valueOf(resultadoPedido.getFormaPagamento().name()));
         response.setCarrinho(resultadoPedido.getCarrinho());
 
