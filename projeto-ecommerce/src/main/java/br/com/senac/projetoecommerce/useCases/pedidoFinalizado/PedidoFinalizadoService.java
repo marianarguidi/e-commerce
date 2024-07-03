@@ -87,6 +87,7 @@ public class PedidoFinalizadoService {
     private PedidoFinalizadoResponseDom converterParaResponseDom(PedidoFinalizado pedido) {
         PedidoFinalizadoResponseDom response = new PedidoFinalizadoResponseDom();
         response.setId(pedido.getId());
+        response.setStatus(pedido.getStatus());
         response.setClienteId(pedido.getClientes().getId());
         response.setEnderecoId(pedido.getEnderecos().getId());
         response.setFormaPagamento(FormaPagamento.valueOf(pedido.getFormaPagamento().name()));
