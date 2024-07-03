@@ -1,5 +1,6 @@
 package br.com.senac.projetoecommerce.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity(name = "enderecos")
@@ -11,6 +12,7 @@ public class Enderecos {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonIgnore
     private Clientes cliente;
 
     @Column(nullable = false)

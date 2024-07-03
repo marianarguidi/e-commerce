@@ -9,8 +9,5 @@ import java.util.List;
 
 @Repository
 public interface PedidoFinalizadoRepository extends JpaRepository<PedidoFinalizado, Long> {
-    List<PedidoFinalizado> findByStatus(Status status);
-    List<PedidoFinalizado> findByClientesId(Long clienteId);
-    List<PedidoFinalizado> findByFormaPagamento(String formaPagamento);
     List<PedidoFinalizado> findByClientesIdOrderByIdDesc(Long clienteId);
 }

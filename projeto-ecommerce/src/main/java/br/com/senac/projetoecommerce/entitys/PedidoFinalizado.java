@@ -1,5 +1,7 @@
 package br.com.senac.projetoecommerce.entitys;
 import br.com.senac.projetoecommerce.utils.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,10 +21,12 @@ public class PedidoFinalizado {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonIgnoreProperties({"pedidos"})  // Ignora a serialização da lista de pedidos do cliente
     private Clientes clientes;
 
     @ManyToOne
     @JoinColumn(name = "endereco_id", nullable = false)
+    @JsonIgnoreProperties({"clientes"})  // Ignora a serialização do cliente do endereço
     private Enderecos enderecos;
 
     /*@OneToOne
@@ -31,6 +35,7 @@ public class PedidoFinalizado {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "carrinho_id")
+    @JsonIgnore
     private Carrinho carrinho;
 
 

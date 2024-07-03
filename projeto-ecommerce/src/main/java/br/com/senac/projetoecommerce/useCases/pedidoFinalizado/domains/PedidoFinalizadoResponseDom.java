@@ -1,8 +1,6 @@
 package br.com.senac.projetoecommerce.useCases.pedidoFinalizado.domains;
 
 import br.com.senac.projetoecommerce.entitys.Carrinho;
-import br.com.senac.projetoecommerce.entitys.Clientes;
-import br.com.senac.projetoecommerce.entitys.Enderecos;
 import br.com.senac.projetoecommerce.utils.FormaPagamento;
 import br.com.senac.projetoecommerce.utils.Status;
 
@@ -62,5 +60,10 @@ public class PedidoFinalizadoResponseDom {
         this.carrinho = carrinho;
     }
 
-    
+    public void PedidoFinalizadoConst(Long id, Status status, FormaPagamento formaPagamento, Carrinho carrinho) {
+        this.id = id;
+        this.status = status;
+        this.formaPagamento = formaPagamento;
+        this.carrinho = carrinho;
+    }
 }
