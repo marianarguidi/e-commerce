@@ -35,9 +35,10 @@ public class PedidoFinalizadoController {
     }
 
     @GetMapping("/ultimos/{clienteId}")
-    public ResponseEntity<List<PedidoFinalizado>> listarUltimosPedidos(@PathVariable Long clienteId) {
+    public ResponseEntity<List<PedidoFinalizadoResponseDom>> listarUltimosPedidos(@PathVariable Long clienteId) {
         try {
-            List<PedidoFinalizado> pedidos = pedidoFinalizadoService.listarUltimosPedidosPorCliente(clienteId);
+            // Chama o serviço que retorna uma lista de PedidoFinalizadoResponseDom
+            List<PedidoFinalizadoResponseDom> pedidos = pedidoFinalizadoService.listarUltimosPedidosPorCliente(clienteId);
             return new ResponseEntity<>(pedidos, HttpStatus.OK);
         } catch (SenacExceptions e) {
             // Retorna NOT_FOUND (404) caso não encontre pedidos para o cliente

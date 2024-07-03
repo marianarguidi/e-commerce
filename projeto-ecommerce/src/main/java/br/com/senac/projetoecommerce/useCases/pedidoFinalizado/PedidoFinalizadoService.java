@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PedidoFinalizadoService {
@@ -29,7 +30,6 @@ public class PedidoFinalizadoService {
         // 1. Validação da Forma de Pagamento
         FormaPagamento formaPagamento;
         try {
-            // Converte o valor para maiúsculas para garantir a correspondência com o enum
             formaPagamento = FormaPagamento.valueOf(pedidoRequest.getFormaPagamento().toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new SenacExceptions("Forma de pagamento inválida: " + pedidoRequest.getFormaPagamento());
@@ -58,15 +58,15 @@ public class PedidoFinalizadoService {
         Carrinho carrinho = new Carrinho();
         carrinho.setClienteId(pedidoRequest.getClienteId());
         carrinho.setProdutos(produtos);
-        carrinho.setQuantidadeProdutos(produtos.size()); // Exemplo de como calcular a quantidade total de produtos
-        carrinho.setValorTotal(produtos.stream().mapToDouble(produto -> produto.getQuantidade() * 100.0).sum()); // Valor total fictício
+        carrinho.setQuantidadeProdutos(produtos.size());
+        carrinho.setValorTotal(produtos.stream().mapToDouble(produto -> produto.getQuantidade() * 100.0).sum());
 
         // 5. Construção do Pedido
         PedidoFinalizado pedido = new PedidoFinalizado();
         pedido.setClientes(cliente);
         pedido.setEnderecos(endereco);
         pedido.setFormaPagamento(formaPagamento);
-        pedido.setStatus(Status.PENDENTE); // Status inicial do pedido
+        pedido.setStatus(Status.PENDENTE);
         pedido.setCarrinho(carrinho);
 
         // 6. Salvar Pedido
@@ -83,7 +83,18 @@ public class PedidoFinalizadoService {
         return response;
     }
 
-    public List<PedidoFinalizado> listarUltimosPedidosPorCliente(Long clienteId) throws SenacExceptions {
+    // Método auxiliar para converter PedidoFinalizado em PedidoFinalizadoResponseDom
+    private PedidoFinalizadoResponseDom converterParaResponseDom(PedidoFinalizado pedido) {
+        PedidoFinalizadoResponseDom response = new PedidoFinalizadoResponseDom();
+        response.setId(pedido.getId());
+        response.setClienteId(pedido.getClientes().getId());
+        response.setEnderecoId(pedido.getEnderecos().getId());
+        response.setFormaPagamento(FormaPagamento.valueOf(pedido.getFormaPagamento().name()));
+        response.setCarrinho(pedido.getCarrinho());
+        return response;
+    }
+
+    public List<PedidoFinalizadoResponseDom> listarUltimosPedidosPorCliente(Long clienteId) throws SenacExceptions {
         // Verifica se o cliente existe
         if (!clientesRepository.existsById(clienteId)) {
             throw new SenacExceptions("Cliente não encontrado com ID: " + clienteId);
@@ -97,6 +108,9 @@ public class PedidoFinalizadoService {
             throw new SenacExceptions("Nenhum pedido encontrado para o cliente com ID: " + clienteId);
         }
 
-        return pedidos;
+        // Converte cada pedido para PedidoFinalizadoResponseDom
+        return pedidos.stream()
+                .map(this::converterParaResponseDom)
+                .collect(Collectors.toList());
     }
 }

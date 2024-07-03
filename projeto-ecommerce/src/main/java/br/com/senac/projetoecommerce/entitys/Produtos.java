@@ -2,6 +2,7 @@ package br.com.senac.projetoecommerce.entitys;
 
 import br.com.senac.projetoecommerce.useCases.produtos.ProdutosPrecos;
 import br.com.senac.projetoecommerce.utils.Categorias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class Produtos {
     private Categorias categoria;
 
     @OneToMany(mappedBy = "produto")
+    @JsonIgnore
     private List<ProdutosPrecos> precos;
 
 
